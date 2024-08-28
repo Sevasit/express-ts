@@ -1,14 +1,14 @@
 import { AppDataSource } from "./data-source";
 import * as express from "express";
 import * as dotenv from "dotenv";
-import { Request, Response } from "express";
 import "reflect-metadata";
-import { userRouter } from "./Routes/user.routes";
+import { errorHandler } from "./middlewares/Error.Middleware";
+import { userRouter } from "./Routes/User.Routes";
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-// app.use(errorHandler);
+app.use(errorHandler);
 const { SERVER_PORT = 3000 } = process.env;
 app.use("/auth", userRouter);
 
